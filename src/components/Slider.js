@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     minWidth: '80px',
     zIndex: 10,
     [theme.breakpoints.down('xs')]: {
-      display: 'none',
+      minWidth: '40px',
     },
   },
   leftBtn: {
