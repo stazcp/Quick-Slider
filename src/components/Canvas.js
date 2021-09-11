@@ -48,7 +48,7 @@ export default function Canvas() {
   const [open, setOpen] = useState(false)
   const [modalStyle] = useState(getModalStyle)
   const { imageData } = useContext(SliderContext)
-  const [width, height] = useWindowSize()
+  const [width] = useWindowSize()  /*height*/
 
   const useStyles = makeStyles((theme) => ({
     paper: {
