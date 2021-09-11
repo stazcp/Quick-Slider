@@ -1,12 +1,12 @@
-import React, { useContext } from 'react'
+import React, { useContext, lazy, Suspense } from 'react'
 import Header from './Header'
-import Canvas from './Canvas'
 import Container from '@material-ui/core/Container'
 import { ChevronLeft, ChevronRight } from 'react-bootstrap-icons'
 import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
 import NavBar from './NavBar'
 import { SliderContext } from '../store/sliderContext'
+const Canvas = lazy(() => import('./Canvas'))
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,6 +42,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
+const loading = (
+  <span role="img" aria-label="loading">
+    ⌛
+  </span>
+)
+
 const buttonProps = {
   size: '5em',
   color: '#94979c',
@@ -73,7 +79,9 @@ const Slider = () => {
           className={clsx(classes.buttonStyle, classes.leftBtn)}
           {...buttonProps}
         />
-        <Canvas />
+        <Suspense fallback={loading}>
+          <Canvas />
+        </Suspense>
         <ChevronRight
           id="rightArrow"
           onClick={(event) => handleClick(event.target.id)}
